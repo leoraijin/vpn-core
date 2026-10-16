@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: fix/android-ffi-dns-runtime
+          ref: b5517eb318ed7e89c49869b6d4e265ba362c76ad
           persist-credentials: false
       - run: git rev-parse HEAD
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
