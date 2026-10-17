@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          ref: fix/tun-uid-routing
+          ref: 994ce4ef5792c23a0298db755db9561eea6726e2
           persist-credentials: false
       - run: git rev-parse HEAD
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
