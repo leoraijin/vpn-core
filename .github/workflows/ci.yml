@@ -26,16 +26,14 @@ jobs:
         with:
           toolchain: stable
           targets: ${{ matrix.target }}
-      - uses: taiki-e/install-action@86f7a0ffb25f40114606501a311ebcfaf882ea32
-        with:
-          tool: cargo-ndk
+      - run: cargo install cargo-ndk --locked --version 3.5.4
       - name: Build and verify Android library
         env:
           ABI: ${{ matrix.abi }}
           RUSTFLAGS: -C link-arg=-Wl,-z,max-page-size=16384 -C link-arg=-Wl,-z,common-page-size=16384
         run: |
           set -euo pipefail
-          export ANDROID_NDK_HOME="$ANDROID_NDK_LATEST_HOME"
+          export ANDROID_NDK_HOME="$ANDROID_NDK_ROOT"
           cargo ndk -t "$ABI" -p 24 -o dist build --locked --release -p reality-ffi
           llvm="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
           "$llvm/llvm-strip" --strip-debug "dist/$ABI/libreality.so"
